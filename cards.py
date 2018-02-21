@@ -43,19 +43,17 @@ class Deck(object):
         """
         The function builds a deck of cards
         """
+        suits = ["Clubs","Hearts","Diamonds","Spades"]
         
         # first add cards with faces from 6 to 10
-        for num in range(6,11):
-            self.faces.append(str(num))
+        self.faces = [str(num) for num in range(6,11)]
 
         # now add cards with royal faces
         for face in self.royal:
             self.faces.append(face)
         
-        # build the deck of cards with different faces for four suits
-        for suit in ["Clubs","Hearts","Diamonds","Spades"]:
-            for face in self.faces:
-                self.cards.append(Card(suit,face))
+        # build the deck of cards with different faces for four suits                
+        self.cards = [Card(suit,face) for suit in suits for face in self.faces]
     
     def shuffle(self):
         """
@@ -74,3 +72,6 @@ class Deck(object):
         for card in self.cards:
             card.show()
             
+deck = Deck()
+deck.shuffle()
+deck.show()
